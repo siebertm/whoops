@@ -23,7 +23,7 @@ class Whoops::EventGroup
   field :archived, :type => Boolean, :default => false
   field :event_count, :type => Integer, :default => 0
 
-  has_many :events, :class_name => "Whoops::Event"
+  has_many :events, :class_name => "Whoops::Event", :dependent => :delete
 
   validates_presence_of :event_group_identifier, :event_type, :service, :message
 

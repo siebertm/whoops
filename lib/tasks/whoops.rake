@@ -6,4 +6,10 @@ namespace :whoops do
       e.save
     end
   end
+
+  desc "Remove event groups and events which happened more then 7 days ago"
+  task :cleanup_old_events => :environment do
+    Whoops::EventGroup.where(:last_recorded_at.lt => 7.days.ago).destroy
+    Whoops::Event.where(:event_time.lt => 7.days.ago).destroy
+  end
 end
