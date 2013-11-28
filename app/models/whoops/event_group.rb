@@ -17,7 +17,7 @@ class Whoops::EventGroup
   index :service
   index :environment
   index :event_type
-  index [:service, :environment, :event_type, :event_group_identifier]
+  index [[:service,Mongo::ASCENDING], [:environment,Mongo::ASCENDING], [:event_type,Mongo::ASCENDING], [:event_group_identifier,Mongo::ASCENDING]]
 
   field :last_recorded_at, :type => DateTime
   field :archived, :type => Boolean, :default => false
